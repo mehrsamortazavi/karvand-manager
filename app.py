@@ -127,6 +127,8 @@ def main():
         print("1) Add karvand")
         print("2) Show all karvands")
         print("3) Exit")
+        print("4) Search by id")
+        print("5) Search by skill")
         choice=input("Choose: ").strip()
         if choice=="1":
             add_karvand()
@@ -135,10 +137,41 @@ def main():
         elif choice=="3":
             print("Goodbye!")
             break
+        elif choice == "4":
+            search_by_id()
+        elif choice == "5":
+            search_by_skill()
         else:
             print("Invalid input.")
 
+def find_by_id(karvands, karvand_id):
+    for k in karvands:
+        if k["id"]== karvand_id:
+            return k
+        return None
+def search_by_id():
+    karvand_id=ask_int("enter id:")
+    data=read_from_json()
+    k=find_by_id(data["karvands"], karvand_id)
+    if k :
+        print_karvand(k)
+    else:
+        print("there is no karvand with this id")
+def search_by_skill():
+    skill_name=input("enter skill name:").lower().strip()
+    data=read_from_json()
+    found=False
+    for k in data["karvands"]:
+        for s in k["skills"]:
+            if s["name"].lower().strip()==skill_name:
+                print_karvand(k)
+                found=True
+                break
+    if not found:
+        print("no karvand with this skill is found")
+                
 
+    
 if __name__ == "__main__":
     main()
 
