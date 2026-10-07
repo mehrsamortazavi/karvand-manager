@@ -1,0 +1,36 @@
+{
+  "bootcamp": {
+    "title": "Karvand AI",
+    "year": 2026
+  },
+  "karvands": [
+    {
+      "id": 1,
+      "full_name": "mehrsa",
+      "email": "mehrsaa",
+      "city": "tehran",
+      "education": {
+        "degree": "bach",
+        "field": "physics"
+      },
+      "skills": [
+        {
+          "name": "python",
+          "level": "mid",
+          "score": 200
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "full_name": "mahdis",
+      "email": "mahdiss",
+      "city": "rasht",
+      "education": {
+        "degree": "master",
+        "field": "medical"
+      },
+      "skills": []
+    }
+  ]
+}
