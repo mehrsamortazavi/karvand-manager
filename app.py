@@ -95,11 +95,11 @@ def add_karvand():
         name=input("enter skill name:")
         level=input("enter skill level:")
         while True:
-            score=ask_int("enter skill score(0-1000):")
-            if 0 <= score <=100:
+            score=ask_int("enter skill score(0-100):")
+            if 0 <= score <= 100:
                 break
             print("enter a number between 0-100")
-            skills.append(Skill(name, level, score))
+        skills.append(Skill(name, level, score))
         add_more=input("Add another skill? y/n : ").lower()
         while add_more not in ("y", "n"):
             print("Invalid input.")

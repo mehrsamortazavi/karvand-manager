@@ -6,31 +6,42 @@
   "karvands": [
     {
       "id": 1,
-      "full_name": "mehrsa",
-      "email": "mehrsaa",
-      "city": "tehran",
+      "full_name": "a",
+      "email": "aa",
+      "city": "aaa",
       "education": {
         "degree": "bach",
-        "field": "physics"
+        "field": "math"
       },
       "skills": [
         {
-          "name": "python",
-          "level": "mid",
-          "score": 200
+          "name": "py",
+          "level": "adv",
+          "score": 90
         }
       ]
     },
     {
       "id": 2,
-      "full_name": "mahdis",
-      "email": "mahdiss",
-      "city": "rasht",
+      "full_name": "b",
+      "email": "bb",
+      "city": "bbb",
       "education": {
         "degree": "master",
-        "field": "medical"
+        "field": "cs"
       },
-      "skills": []
+      "skills": [
+        {
+          "name": "mat",
+          "level": "beg",
+          "score": 12
+        },
+        {
+          "name": "git",
+          "level": "beginner",
+          "score": 12
+        }
+      ]
     }
   ]
 }
