@@ -3,6 +3,7 @@ import json
 
 DATA_DIR="data"
 DATA=os.path.join(DATA_DIR, "karvands.json")
+REPORT=os.path.join(DATA_DIR, "report.json")
 
 class Skill:
     def __init__(self,name,level,score):
@@ -120,6 +121,59 @@ def show_karvands():
         return
     for k in data["karvands"]:
         print_karvand(k)
+def edit_karvand():
+    karvand_id=ask_int("Enter id: ")
+    data=read_from_json()
+    k=find_by_id(data["karvands"], karvand_id)
+    if not k:
+        print("no karvand found with thid id")
+        return
+    print("Press Enter to keep the value.")
+    email=input(f"Email ({k['email']}): ")
+    city=input(f"City ({k['city']}):")
+    degree= input(f"Degree ({k['education']['degree']}):")
+    field= input(f"Field ({k['education']['field']}):")
+    if email:
+        k["email"]= email
+    if city:
+        k["city"]=city
+    if degree:
+        k["education"]["degree"] =degree
+    if field:
+        k["education"]["field"]= field
+    write_in_json(data)
+    print("Karvand updated.")
+
+
+def delete_karvand():
+    karvand_id= ask_int("Enter id:")
+    data=read_from_json()
+    k=find_by_id(data["karvands"], karvand_id)
+    if not k:
+        print("no karvand with this id")
+        return
+    data["karvands"].remove(k)
+    write_in_json(data)
+    print("Karvand deleted.")
+
+
+def report():
+    data=read_from_json()
+    karvands=data["karvands"]
+    all_skills=[s for k in karvands for s in k["skills"]]
+    total_skills= len(all_skills)
+    if total_skills:
+        average=round(sum(s["score"] for s in all_skills) / total_skills, 2)
+    else:
+        average = 0
+    report = {
+        "total_karvands": len(karvands),
+        "total_skills": total_skills,
+        "average_score": average,
+    }
+    with open(REPORT, "w", encoding="utf-8") as file:
+        json.dump(report, file, indent=2)
+    print(json.dumps(report, indent=2))
 
 def main():
     read_from_json()
@@ -129,6 +183,9 @@ def main():
         print("3) Exit")
         print("4) Search by id")
         print("5) Search by skill")
+        print("6) Edit karvand")
+        print("7) Delete karvand")
+        print("8) Report")
         choice=input("Choose: ").strip()
         if choice=="1":
             add_karvand()
@@ -141,6 +198,14 @@ def main():
             search_by_id()
         elif choice == "5":
             search_by_skill()
+        elif choice=="5":
+            edit_karvand()
+        elif choice=="6":
+            edit_karvand()
+        elif choice== "7":
+            delete_karvand()
+        elif choice== "8":
+            report()
         else:
             print("Invalid input.")
 
